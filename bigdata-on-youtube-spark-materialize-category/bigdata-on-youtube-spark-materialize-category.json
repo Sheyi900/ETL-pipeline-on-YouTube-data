@@ -1,0 +1,41 @@
+{
+  "name" : "bigdata-on-youtube-spark-materialize-category",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::598396538898:role/bigdata-on-youtube-glue-services-role-01",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://bigdata-on-youtube-assets-useast1-598396538898-de/aws-services/aws-glue/etl-jobs/bigdata-on-youtube-spark-materialize-category.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://bigdata-on-youtube-assets-useast1-598396538898-de/aws-services/aws-glue/etl-jobs-logs/",
+    "--enable-job-insights" : "false",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-enable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://bigdata-on-youtube-assets-useast1-598396538898-de/aws-services/aws-glue/etl-jobs/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 2880,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "4.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1719284235064\":{\"CatalogSource\":{\"Database\":\"db-youtube-cleansed\",\"Name\":\"AWS Glue Data Catalog\",\"Table\":\"raw_statistics\"}},\"node-1719284254769\":{\"CatalogSource\":{\"Database\":\"db-youtube-cleansed\",\"Name\":\"AWS Glue Data Catalog\",\"Table\":\"cleansed_statistics_reference_data\"}},\"node-1719284529811\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"IsEnabled\":false},\"Compression\":\"snappy\",\"Inputs\":[\"node-1719284284236\"],\"Name\":\"Amazon S3\",\"PartitionKeys\":[[\"region\"],[\"id\"]],\"Path\":\"s3://bigdata-on-youtube-analytics-useast1-598396538898-dev/youtube/rpt_youtube_stat_categories/\",\"SchemaChangePolicy\":{\"Database\":\"db_youtube_analytics\",\"EnableUpdateCatalog\":true,\"Table\":\"rpt_youtube_stat_categories\",\"UpdateBehavior\":\"UPDATE_IN_DATABASE\"}}},\"node-1719284284236\":{\"Join\":{\"Columns\":[{\"From\":\"node-1719284254769\",\"Keys\":[[\"id\"]]},{\"From\":\"node-1719284235064\",\"Keys\":[[\"category_id\"]]}],\"Inputs\":[\"node-1719284254769\",\"node-1719284235064\"],\"JoinType\":\"equijoin\",\"Name\":\"Join\"}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "ETL-pipeline-on-YouTube-data",
+    "branch" : "main",
+    "folder" : "bigdata-on-youtube-spark-materialize-category"
+  }
+}
