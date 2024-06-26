@@ -1,0 +1,40 @@
+{
+  "name" : "bigdata-on-youtube-spark-convert-json-to-parquet",
+  "jobMode" : "SCRIPT",
+  "description" : "",
+  "role" : "arn:aws:iam::598396538898:role/bigdata-on-youtube-glue-services-role-01",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://bigdata-on-youtube-assets-useast1-598396538898-de/aws-services/aws-glue/etl-jobs/bigdata-on-youtube-spark-convert-json-to-parquet.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://bigdata-on-youtube-assets-useast1-598396538898-de/aws-services/aws-glue/etl-jobs-logs/",
+    "--enable-job-insights" : "false",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://bigdata-on-youtube-assets-useast1-598396538898-de/aws-services/aws-glue/etl-jobs/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 2880,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "4.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "ETL-pipeline-on-YouTube-data",
+    "branch" : "main",
+    "folder" : "bigdata-on-youtube-spark-convert-json-to-parquet"
+  }
+}
